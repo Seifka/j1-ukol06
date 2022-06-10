@@ -48,6 +48,7 @@ public class Aplikace extends JFrame {
         husyLabel = new JLabel("Husy");
         husyLabel.setDisplayedMnemonic('H');
         husyLabel.setLabelFor(husyField);
+        husyField.setHorizontalAlignment(JTextField.TRAILING);
         add(husyLabel);
         add(husyField);
 
@@ -55,6 +56,7 @@ public class Aplikace extends JFrame {
         kraliciLabel = new JLabel("Králíci");
         kraliciLabel.setDisplayedMnemonic('K');
         kraliciLabel.setLabelFor(kraliciLabel);
+        kraliciField.setHorizontalAlignment(JTextField.TRAILING);
         add(kraliciLabel);
         add(kraliciField);
 
@@ -65,6 +67,8 @@ public class Aplikace extends JFrame {
         pocetHlavLabel = new JLabel("Počet hlav");
         pocetHlavLabel.setDisplayedMnemonic('H');
         pocetHlavLabel.setLabelFor(kraliciLabel);
+        pocetHlavField.setHorizontalAlignment(JTextField.TRAILING);
+        pocetHlavField.setEditable(false);
         add(pocetHlavLabel);
         add(pocetHlavField);
 
@@ -72,15 +76,16 @@ public class Aplikace extends JFrame {
         pocetNohouLabel = new JLabel("Počet nohou");
         pocetNohouLabel.setDisplayedMnemonic('N');
         pocetNohouLabel.setLabelFor(kraliciLabel);
+        pocetNohouField.setHorizontalAlignment(JTextField.TRAILING);
+        pocetNohouField.setEditable(false);
         add(pocetNohouLabel);
         add(pocetNohouField);
+
+        vypocitatButton.addActionListener(this::handleVypocitat);
 
         pack();
 
         getRootPane().setDefaultButton(vypocitatButton);
-
-
-
 
     }
 
@@ -94,11 +99,18 @@ public class Aplikace extends JFrame {
     }
 
     private void handleVypocitat(ActionEvent actionEvent) {
-        System.out.println("Dělám výpočet");
-        System.out.printf("Husy: %s", husyField.getText()).println();
-        System.out.printf("Králíci: %s", kraliciField.getText()).println();
-        System.out.printf("Počet hlav: %s", pocetHlavField.getText()).println();
-        System.out.printf("Počet nohou: %s", pocetNohouField.getText()).println();
+        String husyText = husyField.getText();
+        int husyPocet = Integer.parseInt(husyText);
+        String kraliciText = kraliciField.getText();
+        int kraliciPocet = Integer.parseInt(kraliciText);
+        int pocetHlavCislo = (husyPocet + kraliciPocet);
+        String pocetHlav = Integer.toString(pocetHlavCislo);
+        int pocetNohouCislo = (2 * husyPocet) + (4 * kraliciPocet);
+        String pocetNohou = Integer.toString(pocetNohouCislo);
 
-        }
+        pocetHlavField.setText(Integer.toString(pocetHlavCislo));
+        pocetNohouField.setText(Integer.toString(pocetNohouCislo));
+
+
+    }
 }
