@@ -104,9 +104,7 @@ public class Aplikace extends JFrame {
         String kraliciText = kraliciField.getText();
         int kraliciPocet = Integer.parseInt(kraliciText);
         int pocetHlavCislo = (husyPocet + kraliciPocet);
-        String pocetHlav = Integer.toString(pocetHlavCislo);
         int pocetNohouCislo = (2 * husyPocet) + (4 * kraliciPocet);
-        String pocetNohou = Integer.toString(pocetNohouCislo);
 
         pocetHlavField.setText(Integer.toString(pocetHlavCislo));
         pocetNohouField.setText(Integer.toString(pocetNohouCislo));
